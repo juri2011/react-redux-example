@@ -1,15 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
+import {createStore} from 'redux';
+import {Provider, useSelector, useDispatch, connect} from 'react-redux';
+
+function reducer(currentState, action){
+  if(currentState === undefined){
+    return{
+      number : 1
+    };
+  }
+  const newState = {...currentState};
+  return newState;
+}
+
+/*
+  createStore는 deprecated됨
+  configureStore 사용 권장 -> Redux toolkit 설치 필요
+*/
+const store = createStore(reducer);
 
 function App() {
-  const [number, setNumber] = useState(1);
   return (
     <div id="container">
-      <h1>Root : {number}</h1>
+      <h1>Root</h1>
       <div id="grid">
-        <Left1></Left1>
-        <Right1></Right1>
+        <Provider store = {store}>
+          <Left1></Left1>
+          <Right1></Right1>
+        </Provider>
       </div>
     </div>
   );
@@ -36,7 +55,7 @@ function Left2(props){
 function Left3(props){
   return (
     <div>
-      <h1>Left3</h1>
+      <h1>Left3 : </h1>
     </div>
   );
 }
