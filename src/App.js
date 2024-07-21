@@ -78,10 +78,14 @@ function Right2(props){
   );
 }
 function Right3(props){
+  //useDispatch() : Redux store에 있는 dispatch함수를 return
+  const dispatch = useDispatch();
   return (
     <div>
       <h1>Right3</h1>
-      <input type="button" value="+" onClick={()=>{}} />
+      <input type="button" value="+" onClick={()=>{
+        dispatch({type: 'PLUS'});
+      }} />
     </div>
   );
 }
