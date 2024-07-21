@@ -11,6 +11,9 @@ function reducer(currentState, action){
     };
   }
   const newState = {...currentState};
+  if(action === 'PLUS'){
+    newState.number++;
+  }
   return newState;
 }
 
