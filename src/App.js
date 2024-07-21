@@ -11,8 +11,10 @@ function reducer(currentState, action){
     };
   }
   const newState = {...currentState};
-  if(action === 'PLUS'){
+  if(action.type === 'PLUS'){
     newState.number++;
+  } else if(action.type === 'MINUS'){
+    newState.number--;
   }
   return newState;
 }
@@ -56,7 +58,8 @@ function Left2(props){
   );
 }
 function Left3(props){
-  const number = useSelector(state => state.number);
+  const number = useSelector((state) => state.number);
+  console.log(number);
   return (
     <div>
       <h1>Left3 : {number}</h1>
@@ -88,6 +91,9 @@ function Right3(props){
       <h1>Right3</h1>
       <input type="button" value="+" onClick={()=>{
         dispatch({type: 'PLUS'});
+      }} />
+      <input type="button" value="-" onClick={()=>{
+        dispatch({type: 'MINUS'});
       }} />
     </div>
   );
